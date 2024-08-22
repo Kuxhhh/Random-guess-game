@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Guess</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+ </head>
+ <body>
+    <div class="container text-center mt-3">
+        <div class="alert alert-dark" role="alert">
+          <p style="font-size: 2rem;">Random Guess</p>          
+         </div>
+          <div class="card mx-auto" style="width: 18rem;">
+             <div class="card-body">
+               <h5 class="card-title">Enter your number :-</h5>
+                <input type="number" id="user-input" class="form-control"> 
+                <div class="alert alert-success" id="kuch bhi" role="alert">
+                    
+                  </div>
+                  
+              <button type="button" class="btn btn-outline-secondary" id="submit" onclick="guess_num()">Submit</button>
+            </div>
+          </div>
+    </div>  
+    <script> 
+        let randomnumber = Math.floor(Math.random()*100) + 1
+        function guess_num(){
+            let result = document.getElementById("kuch bhi")
+            let submit = document.getElementById("submit")
+            let guess = document.getElementById("user-input").value
+            console.log(guess)
+            console.log(randomnumber)     
+            if (randomnumber==guess){
+                result.textContent = "Sherrrrrrrrrrrrrrrr!!!!!!!!!"
+                result.className="alert alert-success"
+                console.log("correct")
+                submit.disabled = true
+                launchConfetti();//Trigger the confetti effect
+            }
+            else if (randomnumber>guess){
+                result.textContent = "guess is lower"
+                result.className="alert alert-danger"
+                console.log("guess is lower")
+            }
+            else if (randomnumber<guess){
+                result.textContent = "guess is higher"
+                result.className="alert alert-danger"
+                console.log("guess is higher")
+            }
+            
+
+    }
+    function launchConfetti()
+    {
+            confetti({
+                particlecount: 1000,
+                spread: 100,
+                origin: {y: 0.5}
+            });
+    }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
